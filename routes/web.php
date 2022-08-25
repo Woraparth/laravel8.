@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Covid19Controller;
 use App\Http\Controllers\MyProfileController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\MyProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -131,3 +133,6 @@ Route::get("/staff/{id}/edit", [ StaffController::class , "edit" ]);
 Route::post("/staff",[ StaffController::class , "store" ]);
 Route::patch("/staff/{id}", [ StaffController::class , "update" ]);
 Route::delete('/staff/{id}', [ StaffController::class , 'destroy' ]);
+
+//Route::resource('post', 'PostController');
+Route::resource('post', PostController::class);
