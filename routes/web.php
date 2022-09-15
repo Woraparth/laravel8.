@@ -59,8 +59,10 @@ Route::get("/myorder/create", function () {
     return "<h1>This is order form page : " . request("username") . "</h1>";
 });
 
-Route::get("/hello", function () {
-    return view("hello");
+Route::middleware(['auth', 'role:admin,teacher,student'])->group(function () {
+    Route::get("/hello", function () {
+        return view("hello");
+    });
 });
 
 
@@ -136,3 +138,9 @@ Route::delete('/staff/{id}', [ StaffController::class , 'destroy' ]);
 
 //Route::resource('post', 'PostController');
 Route::resource('post', PostController::class);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
